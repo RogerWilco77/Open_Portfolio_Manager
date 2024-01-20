@@ -1,10 +1,15 @@
-from PySide6.QtWidgets import QApplication, QWidget, QMainWindow
+import sys
+from gui.main_window import Main_Window
+from PySide6 import QtWidgets
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-   app = QApplication()
-   window = QMainWindow()
-   window.show()
-   window.setWindowTitle('Open Portfolio Manager')
+def main():
+   app = QtWidgets.QApplication(sys.argv)
+   main_window = Main_Window()
+   main_window.show()
 
+   sys.exit(app.exec())
    app.exec()
+
+
+if __name__ == '__main__':
+   main()
