@@ -1,7 +1,8 @@
 import sys
 from PySide6.QtCore import (Qt, QAbstractTableModel)
 from PySide6.QtWidgets import (
-    QApplication, QMainWindow, QTableView
+    QApplication, QMainWindow, QTableView, QToolBar, QStatusBar, QProgressBar, QWidget, QVBoxLayout,
+    QFileDialog
 ) 
 from PySide6.QtGui import QAction
 
@@ -40,7 +41,7 @@ class MainWindow(QMainWindow):
       
       self._create_menu_bar()
       self._create_tool_bar()
-      self.Create_status_bar()
+      self._create_status_bar()
       
       # Central eidget and layout
       self.central_widget = QWidget()
@@ -73,7 +74,7 @@ class MainWindow(QMainWindow):
       
    def _create_status_bar(self):
       self.status_bar = QStatusBar()
-      self.setstatusbar(self.status_bar)
+      self.setStatusBar(self.status_bar)
       
       # Progress bar
       self.progress = QProgressBar()
@@ -81,7 +82,7 @@ class MainWindow(QMainWindow):
       
    def import_symbols(self):
       dirname = os.path.dirname(os.path.realpath(__file__))
-      fname = QFileDialog.getOpenFilename(self, 'Import Symbols', dirname)
+      fname = QFileDialog.getOpenFileName(self, 'Import Symbols', dirname)
       symbols = self.load_symbols(fname[0])
        
        
@@ -95,9 +96,10 @@ class MainWindow(QMainWindow):
             print(line)
       return symbols
    
-   if __name__ == 'main':
-      app = QApplication(sys.argv)
-      window = MainWindow()
-      window.show()
-      sys.exit(app.exec())
+if __name__ == '__main__':
+   app = QApplication(sys.argv)
+   print("in main")
+   window = MainWindow()
+   window.show()
+   sys.exit(app.exec())
        
